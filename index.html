@@ -7,6 +7,9 @@
 
     <title>Portfolio | Fath Ihsan</title>
 
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         * {
             margin: 0;
@@ -18,63 +21,58 @@
         body {
             font-family: Arial, sans-serif;
             background: #0f172a;
-            color: #f8fafc;
+            color: white;
             line-height: 1.6;
         }
 
-        /* NAVBAR */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.95);
             padding: 18px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(15, 23, 42, .95);
             z-index: 1000;
             border-bottom: 1px solid #1e293b;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 25px;
             font-weight: bold;
             color: #38bdf8;
         }
 
         nav ul {
             display: flex;
+            gap: 25px;
             list-style: none;
-            gap: 30px;
         }
 
-        nav ul li a {
+        nav a {
             color: white;
             text-decoration: none;
-            transition: 0.3s;
         }
 
-        nav ul li a:hover {
+        nav a:hover {
             color: #38bdf8;
         }
 
-        /* HERO */
+        section {
+            padding: 90px 8%;
+        }
+
         .hero {
             min-height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 100px 8% 50px;
-        }
-
-        .hero-content {
-            max-width: 900px;
+            align-items: center;
             text-align: center;
         }
 
         .hero h1 {
             font-size: 55px;
-            margin-bottom: 15px;
         }
 
         .hero h1 span {
@@ -82,54 +80,41 @@
         }
 
         .hero h2 {
-            font-size: 25px;
             color: #cbd5e1;
-            margin-bottom: 20px;
+            margin: 15px 0;
         }
 
         .hero p {
-            color: #94a3b8;
             max-width: 650px;
             margin: auto;
+            color: #94a3b8;
         }
 
         .btn {
             display: inline-block;
-            margin-top: 30px;
-            padding: 13px 28px;
+            margin-top: 25px;
+            padding: 12px 25px;
             background: #38bdf8;
             color: #0f172a;
-            text-decoration: none;
             border-radius: 8px;
+            text-decoration: none;
             font-weight: bold;
-            transition: 0.3s;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            background: #7dd3fc;
-        }
-
-        /* SECTION */
-        section {
-            padding: 90px 8%;
-        }
-
-        .section-title {
+        .title {
             text-align: center;
-            margin-bottom: 45px;
+            margin-bottom: 40px;
         }
 
-        .section-title h2 {
+        .title h2 {
             font-size: 35px;
             color: #38bdf8;
         }
 
-        .section-title p {
+        .title p {
             color: #94a3b8;
         }
 
-        /* ABOUT */
         .about {
             background: #111827;
         }
@@ -141,43 +126,37 @@
             color: #cbd5e1;
         }
 
-        /* SKILLS */
-        .skills-container {
-            max-width: 900px;
-            margin: auto;
+        .grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
 
-        .skill {
+        .card {
             background: #1e293b;
             padding: 25px;
-            text-align: center;
-            border-radius: 10px;
-            transition: 0.3s;
+            border-radius: 12px;
+            transition: .3s;
         }
 
-        .skill:hover {
+        .card:hover {
             transform: translateY(-5px);
-            background: #263449;
         }
 
-        .skill h3 {
+        .card h3 {
             color: #38bdf8;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        .skill p {
+        .card p {
             color: #cbd5e1;
         }
 
-        /* PROJECT */
         .projects {
             background: #111827;
         }
 
-        .project-container {
+        .project-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
@@ -187,11 +166,6 @@
             background: #1e293b;
             padding: 25px;
             border-radius: 12px;
-            transition: 0.3s;
-        }
-
-        .project:hover {
-            transform: translateY(-7px);
         }
 
         .project h3 {
@@ -207,24 +181,54 @@
         .project a {
             color: #38bdf8;
             text-decoration: none;
-            font-weight: bold;
         }
 
-        /* CONTACT */
         .contact {
             text-align: center;
         }
 
-        .contact p {
-            color: #cbd5e1;
-            margin: 10px;
+        form {
+            max-width: 600px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .contact-info {
-            margin-top: 25px;
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #1e293b;
+            color: white;
+            outline: none;
         }
 
-        /* FOOTER */
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #38bdf8;
+            color: #0f172a;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #7dd3fc;
+        }
+
+        #status {
+            margin-top: 15px;
+        }
+
         footer {
             text-align: center;
             padding: 25px;
@@ -232,40 +236,33 @@
             color: #94a3b8;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
-
             nav {
                 padding: 15px 5%;
             }
 
             nav ul {
-                gap: 12px;
+                gap: 10px;
             }
 
-            nav ul li a {
-                font-size: 13px;
+            nav a {
+                font-size: 12px;
             }
 
             .hero h1 {
-                font-size: 40px;
+                font-size: 38px;
             }
 
-            .hero h2 {
-                font-size: 20px;
-            }
-
-            .skills-container {
+            .grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .project-container {
+            .project-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
-
             nav {
                 flex-direction: column;
                 gap: 10px;
@@ -275,11 +272,7 @@
                 padding-top: 140px;
             }
 
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .skills-container {
+            .grid {
                 grid-template-columns: 1fr;
             }
 
@@ -292,223 +285,333 @@
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav>
-        <div class="logo">Fath.</div>
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Fath.</div>
 
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">Tentang</a></li>
-            <li><a href="#skills">Skill</a></li>
-            <li><a href="#projects">Project</a></li>
-            <li><a href="#contact">Kontak</a></li>
-        </ul>
-    </nav>
-
-
-    <!-- HERO -->
-    <section class="hero" id="home">
-
-        <div class="hero-content">
-
-            <h1>Halo, Saya <span>Fath Ihsan</span></h1>
-
-            <h2>Web Developer & Pelajar RPL</h2>
-
-            <p>
-                Saya adalah pelajar yang tertarik dengan dunia teknologi,
-                pemrograman web, dan pengembangan aplikasi.
-                Saya senang membuat website dan mempelajari teknologi baru.
-            </p>
-
-            <a href="#projects" class="btn">
-                Lihat Project
-            </a>
-
-        </div>
-
-    </section>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#skills">Skill</a></li>
+        <li><a href="#projects">Project</a></li>
+        <li><a href="#contact">Kontak</a></li>
+    </ul>
+</nav>
 
 
-    <!-- ABOUT -->
-    <section class="about" id="about">
+<!-- HOME -->
+<section class="hero" id="home">
 
-        <div class="section-title">
-            <h2>Tentang Saya</h2>
-            <p>Kenali saya lebih dekat</p>
-        </div>
+    <div>
+        <h1>Halo, Saya <span>Fath Ihsan</span></h1>
 
-        <div class="about-content">
-
-            <p>
-                Saya merupakan pelajar Rekayasa Perangkat Lunak (RPL)
-                yang sedang mempelajari berbagai teknologi pemrograman.
-                Saya memiliki ketertarikan pada pembuatan website,
-                aplikasi, database, dan desain antarmuka.
-            </p>
-
-            <br>
-
-            <p>
-                Saat ini saya terus mengembangkan kemampuan melalui
-                berbagai project sederhana dan tugas pemrograman.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- SKILLS -->
-    <section id="skills">
-
-        <div class="section-title">
-            <h2>Skill</h2>
-            <p>Teknologi yang saya pelajari</p>
-        </div>
-
-        <div class="skills-container">
-
-            <div class="skill">
-                <h3>HTML</h3>
-                <p>Web Structure</p>
-            </div>
-
-            <div class="skill">
-                <h3>CSS</h3>
-                <p>Web Design</p>
-            </div>
-
-            <div class="skill">
-                <h3>PHP</h3>
-                <p>Web Programming</p>
-            </div>
-
-            <div class="skill">
-                <h3>MySQL</h3>
-                <p>Database</p>
-            </div>
-
-            <div class="skill">
-                <h3>JavaScript</h3>
-                <p>Web Interaction</p>
-            </div>
-
-            <div class="skill">
-                <h3>React Native</h3>
-                <p>Mobile App</p>
-            </div>
-
-            <div class="skill">
-                <h3>Python</h3>
-                <p>Programming</p>
-            </div>
-
-            <div class="skill">
-                <h3>Bootstrap</h3>
-                <p>Responsive UI</p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PROJECT -->
-    <section class="projects" id="projects">
-
-        <div class="section-title">
-            <h2>Project</h2>
-            <p>Beberapa project yang pernah dibuat</p>
-        </div>
-
-        <div class="project-container">
-
-            <div class="project">
-                <h3>CarZone</h3>
-
-                <p>
-                    Website online shop showroom mobil
-                    untuk menampilkan dan menjual berbagai
-                    jenis mobil.
-                </p>
-
-                <a href="#">
-                    Lihat Project →
-                </a>
-            </div>
-
-
-            <div class="project">
-                <h3>Product Manager</h3>
-
-                <p>
-                    Aplikasi mobile sederhana untuk
-                    mengelola data produk menggunakan
-                    React Native.
-                </p>
-
-                <a href="#">
-                    Lihat Project →
-                </a>
-            </div>
-
-
-            <div class="project">
-                <h3>My Notes</h3>
-
-                <p>
-                    Website catatan sederhana menggunakan
-                    PHP dan MySQL dengan fitur login,
-                    tambah, edit, dan hapus catatan.
-                </p>
-
-                <a href="#">
-                    Lihat Project →
-                </a>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-
-        <div class="section-title">
-            <h2>Kontak</h2>
-            <p>Hubungi saya</p>
-        </div>
-
-        <div class="contact-info">
-
-            <p>📧 Email: emailkamu@example.com</p>
-
-            <p>📱 Instagram: @usernamekamu</p>
-
-            <p>💻 GitHub: github.com/usernamekamu</p>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer>
+        <h2>Web Developer & Pelajar RPL</h2>
 
         <p>
-            © <span id="year"></span> Fath Ihsan. All Rights Reserved.
+            Saya adalah pelajar Rekayasa Perangkat Lunak
+            yang tertarik dengan pemrograman web,
+            aplikasi, database, dan teknologi.
         </p>
 
-    </footer>
+        <a href="#projects" class="btn">
+            Lihat Project
+        </a>
+    </div>
+
+</section>
 
 
-    <!-- JAVASCRIPT -->
-    <script>
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
-    </script>
+<!-- ABOUT -->
+<section class="about" id="about">
+
+    <div class="title">
+        <h2>Tentang Saya</h2>
+        <p>Kenali saya lebih dekat</p>
+    </div>
+
+    <div class="about-content">
+
+        <p>
+            Saya merupakan pelajar Rekayasa Perangkat Lunak
+            yang sedang mempelajari HTML, CSS, JavaScript,
+            PHP, database, React Native, dan berbagai
+            teknologi pemrograman lainnya.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- SKILLS -->
+<section id="skills">
+
+    <div class="title">
+        <h2>Skill</h2>
+        <p>Data skill diambil dari Supabase</p>
+    </div>
+
+    <div class="grid" id="skillsContainer">
+
+        <p>Loading skill...</p>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECT -->
+<section class="projects" id="projects">
+
+    <div class="title">
+        <h2>Project</h2>
+        <p>Data project diambil dari Supabase</p>
+    </div>
+
+    <div class="project-grid" id="projectsContainer">
+
+        <p>Loading project...</p>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+
+    <div class="title">
+        <h2>Kontak</h2>
+        <p>Kirim pesan kepada saya</p>
+    </div>
+
+    <form id="contactForm">
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Nama"
+            required
+        >
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email"
+            required
+        >
+
+        <textarea
+            id="message"
+            placeholder="Pesan"
+            required
+        ></textarea>
+
+        <button type="submit">
+            Kirim Pesan
+        </button>
+
+        <p id="status"></p>
+
+    </form>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © <span id="year"></span> Fath Ihsan
+    </p>
+
+</footer>
+
+
+<script>
+
+    // ==========================================
+    // SUPABASE CONFIGURATION
+    // ==========================================
+
+    const SUPABASE_URL = "MASUKKAN_SUPABASE_URL";
+    const SUPABASE_KEY = "MASUKKAN_SUPABASE_ANON_KEY";
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    // ==========================================
+    // MENAMPILKAN SKILL
+    // ==========================================
+
+    async function loadSkills() {
+
+        const container =
+            document.getElementById("skillsContainer");
+
+        const { data, error } =
+            await supabaseClient
+                .from("skills")
+                .select("*")
+                .order("id", { ascending: true });
+
+        if (error) {
+
+            container.innerHTML =
+                "<p>Gagal mengambil data skill.</p>";
+
+            console.error(error);
+
+            return;
+        }
+
+        container.innerHTML = "";
+
+        data.forEach(skill => {
+
+            container.innerHTML += `
+                <div class="card">
+
+                    <h3>${skill.name}</h3>
+
+                    <p>
+                        ${skill.description || ""}
+                    </p>
+
+                </div>
+            `;
+
+        });
+    }
+
+
+    // ==========================================
+    // MENAMPILKAN PROJECT
+    // ==========================================
+
+    async function loadProjects() {
+
+        const container =
+            document.getElementById("projectsContainer");
+
+        const { data, error } =
+            await supabaseClient
+                .from("projects")
+                .select("*")
+                .order("id", { ascending: true });
+
+        if (error) {
+
+            container.innerHTML =
+                "<p>Gagal mengambil data project.</p>";
+
+            console.error(error);
+
+            return;
+        }
+
+        container.innerHTML = "";
+
+        data.forEach(project => {
+
+            container.innerHTML += `
+                <div class="project">
+
+                    <h3>
+                        ${project.title}
+                    </h3>
+
+                    <p>
+                        ${project.description || ""}
+                    </p>
+
+                    <a href="${project.link || "#"}">
+                        Lihat Project →
+                    </a>
+
+                </div>
+            `;
+
+        });
+    }
+
+
+    // ==========================================
+    // FORM KONTAK
+    // ==========================================
+
+    document
+        .getElementById("contactForm")
+        .addEventListener("submit", async function(e) {
+
+            e.preventDefault();
+
+            const name =
+                document.getElementById("name").value;
+
+            const email =
+                document.getElementById("email").value;
+
+            const message =
+                document.getElementById("message").value;
+
+            const status =
+                document.getElementById("status");
+
+            status.textContent =
+                "Mengirim pesan...";
+
+            const { error } =
+                await supabaseClient
+                    .from("messages")
+                    .insert([
+                        {
+                            name: name,
+                            email: email,
+                            message: message
+                        }
+                    ]);
+
+            if (error) {
+
+                status.textContent =
+                    "Pesan gagal dikirim.";
+
+                console.error(error);
+
+                return;
+            }
+
+            status.textContent =
+                "Pesan berhasil dikirim!";
+
+            document
+                .getElementById("contactForm")
+                .reset();
+
+        });
+
+
+    // ==========================================
+    // TAHUN FOOTER
+    // ==========================================
+
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+
+    // ==========================================
+    // LOAD DATA
+    // ==========================================
+
+    loadSkills();
+    loadProjects();
+
+</script>
 
 </body>
 </html>
